@@ -335,10 +335,6 @@ function addUpStudentCredits(reportCardTableElement) {
   const allCreditElements = reportCardTableElement.querySelectorAll(".credit")
 
   let total = 0
-  allCreditElements.forEach((el) => {
-    const amount = Number(el.innerHTML)
-    total += amount
-  })
 
   const totalCreditsElement = reportCardTableElement.querySelector("#total-credits")
   if (totalCreditsElement) totalCreditsElement.innerHTML = `${total} credits`
@@ -362,21 +358,6 @@ function calculateSemesterGpa(reportCardTableElement) {
   let totalCourses = 0
   let totalGpaPoints = 0
 
-  gpaElems.forEach((el, i) => {
-    const grade = el.innerHTML
-    const points = gpaPointsLookup[grade]
-    if (points) {
-      totalCourses += 1
-      totalGpaPoints += points
-      const gpaElement = reportCardTableElement.querySelector(`#gpa-${i + 1}`)
-      if (gpaElement) gpaElement.innerHTML = points
-    }
-  })
-
-  const totalPtsElement = reportCardTableElement.querySelector("#total-pts")
-  if (totalPtsElement) totalPtsElement.innerHTML = totalGpaPoints
-  const cumulativeGpaElement = reportCardTableElement.querySelector("#gpa")
-  if (cumulativeGpaElement) cumulativeGpaElement.innerHTML = Number(totalGpaPoints / totalCourses).toFixed(2)
 }
 
 window.onload = function () {
